@@ -25,7 +25,7 @@ const config = defineConfig({
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: true,
+    headless: false,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "https://qauto.forstudy.space/",
     httpCredentials: {
@@ -68,8 +68,8 @@ const config = defineConfig({
     {
       name: "dev",
       use: {
-        ...devices["Desktop Firefox"],
-        baseURL: "https://qauto2.forstudy.space/",
+        ...devices["Desktop Chrome"],
+        baseURL: "https://qauto.forstudy.space/",
       },
     },
 
