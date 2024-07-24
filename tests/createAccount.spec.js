@@ -6,17 +6,19 @@ test.describe("Create an account", () => {
     return `${prefix}_${randomString}@yopmail.com`;
   }
 
-  test("Create an account with valid data", async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto("/");
 
     const signUpButton = page.locator("button.hero-descriptor_btn");
     await signUpButton.click();
+  });
 
+  test("Create an account with valid data", async ({ page }) => {
     const nameField = page.locator("#signupName");
-    await nameField.fill("Max");
+    await nameField.fill("Max".trim());
 
     const lastNameField = page.locator("#signupLastName");
-    await lastNameField.fill("Danish");
+    await lastNameField.fill("Danish".trim());
 
     const emailField = page.locator("#signupEmail");
     await emailField.fill(generateRandomEmail());
@@ -35,11 +37,6 @@ test.describe("Create an account", () => {
   });
 
   test("The empty Name field validation", async ({ page }) => {
-    await page.goto("/");
-
-    const signUpButton = page.locator("button.hero-descriptor_btn");
-    await signUpButton.click();
-
     const nameField = page.locator("#signupName");
     await nameField.focus();
     await nameField.blur();
@@ -48,6 +45,38 @@ test.describe("Create an account", () => {
 
     const emptyNameFieldErrorMessage = page.locator(".invalid-feedback > p");
     await expect(emptyNameFieldErrorMessage).toHaveText("Name required");
+    await expect(nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test("Name field with less than minimum characters", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("M");
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p");
+
+    await expect(errorMessage).toHaveText(
+      "Name has to be from 2 to 20 characters long"
+    );
+    await expect(nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test.only("Name field with more than max characters", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("MaxxxMaxxxMaxxxMaxxx2");
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p:nth-child(2)");
+
+    await expect(errorMessage).toHaveText(
+      "Name has to be from 2 to 20 characters long"
+    );
     await expect(nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
     await expect(registerButton).toBeDisabled();
   });
