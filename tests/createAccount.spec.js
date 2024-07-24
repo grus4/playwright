@@ -65,7 +65,7 @@ test.describe("Create an account", () => {
     await expect(registerButton).toBeDisabled();
   });
 
-  test.only("Name field with more than max characters", async ({ page }) => {
+  test("Name field with more than max characters", async ({ page }) => {
     const nameField = page.locator("#signupName");
     await nameField.fill("MaxxxMaxxxMaxxxMaxxx2");
     const lastNameField = page.locator("#signupLastName");
@@ -78,6 +78,98 @@ test.describe("Create an account", () => {
       "Name has to be from 2 to 20 characters long"
     );
     await expect(nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test("The invalid Name field validation", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("Max@#");
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p");
+
+    await expect(errorMessage).toHaveText("Name is invalid");
+    await expect(nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test("The empty Last Name field validation", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("Max".trim());
+
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.focus();
+    await lastNameField.blur();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+
+    const emptyLastNameFieldErrorMessage = page.locator(
+      ".invalid-feedback > p"
+    );
+    await expect(emptyLastNameFieldErrorMessage).toHaveText(
+      "Last name required"
+    );
+    await expect(lastNameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test("Last Name field with less than minimum characters", async ({
+    page,
+  }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("Max");
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.fill("D");
+
+    const emailField = page.locator("#signupEmail");
+    await emailField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p");
+
+    await expect(errorMessage).toHaveText(
+      "Last name has to be from 2 to 20 characters long"
+    );
+    await expect(lastNameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test("Last Name field with more than max characters", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("Max");
+
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.fill("MaxxxMaxxxMaxxxMaxxx2");
+
+    const emailField = page.locator("#signupEmail");
+    await emailField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p:nth-child(2)");
+
+    await expect(errorMessage).toHaveText(
+      "Last name has to be from 2 to 20 characters long"
+    );
+    await expect(lastNameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
+    await expect(registerButton).toBeDisabled();
+  });
+
+  test.only("The invalid Last Name field validation", async ({ page }) => {
+    const nameField = page.locator("#signupName");
+    await nameField.fill("Max");
+    const lastNameField = page.locator("#signupLastName");
+    await lastNameField.fill("Max@#");
+
+    const emailField = page.locator("#signupEmail");
+    await emailField.focus();
+
+    const registerButton = page.locator(".modal-footer .btn-primary");
+    const errorMessage = page.locator(".invalid-feedback > p");
+
+    await expect(errorMessage).toHaveText("Last name is invalid");
+    await expect(lastNameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
     await expect(registerButton).toBeDisabled();
   });
 });
