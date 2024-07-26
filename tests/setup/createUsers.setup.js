@@ -1,5 +1,5 @@
-import { test as setup } from "@playwright/test";
+import { test as setup } from '@playwright/test';
 
-setup("Create users", async ({}) => {
-  console.log("CREATE USERS");
+setup('Create users', async ({}) => {
+    console.log('CREATE USERS');
 });
