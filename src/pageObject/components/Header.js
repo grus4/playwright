@@ -1,8 +1,8 @@
-import { expect } from '@playwright/test';
+import BaseComponent from './BaseComponent';
 
-export default class Header {
+export default class Header extends BaseComponent{
     constructor(page) {
-        this._page = page;
+        super(page);
         this.signInButton = page.locator('button.header_signin');
         this.myProfileIcon = page.locator('#userNavDropdown');
     }

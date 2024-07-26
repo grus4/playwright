@@ -69,7 +69,7 @@ const config = defineConfig({
             name: 'dev',
             use: {
                 ...devices['Desktop Chrome'],
-                baseURL: 'https://qauto.forstudy.space/',
+                baseURL: 'https://qauto.forstudy.space',
             },
         },
 
