@@ -1,37 +1,31 @@
 import { test, expect } from '@playwright/test';
+import HomePage from '../src/pageObject/homePage/HomePage';
+import CreteAccountModal from '../src/pageObject/homePage/homePageComponents/createAccountModal';
 
-test.describe('Create an account', () => {
+test.describe('Create an account POM', () => {
+    let createAccountModal;
+
     function generateRandomEmail(prefix = 'test') {
         const randomString = Math.random().toString(36).substring(2, 11); // Генерує випадковий рядок довжиною 9 символів
         return `${prefix}_${randomString}@yopmail.com`;
     }
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('/');
-
-        const signUpButton = page.locator('button.hero-descriptor_btn');
-        await signUpButton.click();
+        const homePage = new HomePage(page);
+        homePage.navigateToPage();
+        homePage.clickSignUpButton();
+        createAccountModal = new CreteAccountModal(page);
     });
 
-    test('Create an account with valid data', async ({ page }) => {
-        const nameField = page.locator('#signupName');
-        await nameField.fill('Max'.trim());
-
-        const lastNameField = page.locator('#signupLastName');
-        await lastNameField.fill('Danish'.trim());
-
-        const emailField = page.locator('#signupEmail');
-        await emailField.fill(generateRandomEmail());
-
-        const passwordField = page.locator('#signupPassword');
-        await passwordField.fill('Qwert_1234');
-
-        const confirmPasswordField = page.locator('#signupRepeatPassword');
-        await confirmPasswordField.fill('Qwert_1234');
-
-        const registerButton = page.locator('.modal-footer .btn-primary');
-        await registerButton.click();
-
+    test.only('Create an account with valid data', async ({ page }) => {
+        await createAccountModal.createNewAccount({
+            firstName: 'Max',
+            lastName: 'Danish',
+            email: generateRandomEmail(),
+            password: 'Qwert_1234',
+            confirmPassword: 'Qwert_1234',
+        });
+        
         const myProfileIcon = page.locator('#userNavDropdown');
         await expect(myProfileIcon).toBeVisible();
     });
