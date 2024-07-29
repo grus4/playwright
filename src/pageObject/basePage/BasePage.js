@@ -11,6 +11,7 @@ export default class BasePage {
 
     async navigateToPage() {
         await this._page.goto(this._url);
+        await this._page.waitForLoadState();
         await expect(this._waitPageSelector).toBeVisible();
     }
 }
