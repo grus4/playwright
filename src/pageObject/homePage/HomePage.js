@@ -5,7 +5,7 @@ import BasePage from '../basePage/BasePage';
 
 export default class HomePage extends BasePage {
     constructor(page) {
-        super(page, '/', page.locator('button.header_signin'));
+        super(page, '/', page.locator('button.hero-descriptor_btn'));
         this.signUpButton = page.locator('button.hero-descriptor_btn');
     }
 
