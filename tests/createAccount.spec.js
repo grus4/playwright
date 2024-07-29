@@ -3,6 +3,7 @@ import HomePage from '../src/pageObject/homePage/HomePage';
 import GaragePage from '../src/pageObject/garagePage/GaragePage';
 
 test.describe('Create an account POM', () => {
+     /** @type {HomePage} */
     let createAccountModal;
 
     function generateRandomEmail(prefix = 'test') {
@@ -24,7 +25,7 @@ test.describe('Create an account POM', () => {
             password: 'Qwert_1234',
             confirmPassword: 'Qwert_1234',
         });
-
+        
         const garagePage = new GaragePage(page);
         await expect(garagePage.myProfileIcon).toBeVisible();
     });
@@ -85,8 +86,8 @@ test.describe('Create an account POM', () => {
         await expect(createAccountModal.registerButton).toBeDisabled();
     });
 
-    test.only('The empty Last Name field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
+    test('The empty Last Name field validation', async ({ page }) => {
+        await createAccountModal.nameField.fill('Max');
         await createAccountModal.lastNameField.focus();
         await createAccountModal.lastNameField.blur();
 
@@ -148,8 +149,8 @@ test.describe('Create an account POM', () => {
     });
 
     test('The empty Email field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.focus();
         await createAccountModal.emailField.blur();
 
@@ -164,8 +165,8 @@ test.describe('Create an account POM', () => {
     });
 
     test('The invalid Email field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.fill('test1:@@yopmail.com');
         await createAccountModal.passwordField.fill('Qwert_1234');
 
@@ -180,8 +181,8 @@ test.describe('Create an account POM', () => {
     });
 
     test('The empty Password field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.fill(generateRandomEmail());
         await createAccountModal.passwordField.focus();
         await createAccountModal.passwordField.blur();
@@ -197,8 +198,8 @@ test.describe('Create an account POM', () => {
     });
 
     test('The invalid Password field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.fill(generateRandomEmail());
         await createAccountModal.passwordField.fill('123rtewi');
         await createAccountModal.confirmPasswordField.focus();
@@ -214,8 +215,8 @@ test.describe('Create an account POM', () => {
     });
 
     test('The empty Confirm Password field validation', async ({ page }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.fill(generateRandomEmail());
         await createAccountModal.passwordField.fill('Qwert_1234');
         await createAccountModal.confirmPasswordField.focus();
@@ -234,8 +235,8 @@ test.describe('Create an account POM', () => {
     test('Verifying mismatching a Password in the Password and Confirm Password fields', async ({
         page,
     }) => {
-        await createAccountModal.nameField.fill('Max'.trim());
-        await createAccountModal.lastNameField.fill('Danish'.trim());
+        await createAccountModal.nameField.fill('Max');
+        await createAccountModal.lastNameField.fill('Danish');
         await createAccountModal.emailField.fill(generateRandomEmail());
         await createAccountModal.passwordField.fill('Qwert_1234');
         await createAccountModal.confirmPasswordField.fill('Qwert_12345');
@@ -251,4 +252,5 @@ test.describe('Create an account POM', () => {
         );
         await expect(createAccountModal.registerButton).toBeDisabled();
     });
+    
 });
