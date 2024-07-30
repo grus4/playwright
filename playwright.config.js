@@ -8,8 +8,8 @@ import dotenv from 'dotenv';
  * https://github.com/motdotla/dotenv
  */
 dotenv.config({
-    //path: './.env'
-    path: process.env.ENV === 'dev' ? './env/.env.dev' : './env/env/.env.stg',
+    path: './.env',
+    //path: process.env.ENV === 'dev' ? './env/.env.dev' : './env/.env.stg',
 });
 
 /**
