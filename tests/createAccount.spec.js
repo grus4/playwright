@@ -17,7 +17,7 @@ test.describe('Create an account POM', () => {
         createAccountModal = await homePage.clickSignUpButton();
     });
 
-    test('Create an account with valid data', async ({ page }) => {
+    test.only('Create an account with valid data @smoke', async ({ page }) => {
         await createAccountModal.createNewAccount({
             firstName: 'Max',
             lastName: 'Danish',
