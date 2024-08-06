@@ -23,14 +23,33 @@ const config = defineConfig({
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
-    retries: 1,
+    retries: 0,
     /* Opt out of parallel tests on CI. */
     workers: 3,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: 'html',
+    reporter: [
+        ['html', { open: process.env.CI ? 'never' : 'on-failure' }],
+        [process.env.CI ? 'dot' : 'list'],
+        [
+            'playwright-qase-reporter',
+            {
+                testops: {
+                    uploadAttachments: true,
+                    api: {
+                        token: process.env.QASE_API_TOKEN,
+                    },
+                    project: process.env.QASE_PROJECT_NAME,
+                },
+                run: {
+                    complete: true,
+                },
+            },
+        ],
+    ],
+
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
-        headless: false,
+        headless: true,
         /* Base URL to use in actions like `await page.goto('/')`. */
         baseURL: process.env.BASE_URL,
         httpCredentials: {
@@ -44,9 +63,12 @@ const config = defineConfig({
         },
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-        trace: 'retain-on-failure',
+        // trace: 'retain-on-failure',
+        // video: 'retain-on-failure',
+        // screenshot: 'only-on-failure',
+        trace: 'on',
         video: 'on',
-        screenshot: 'only-on-failure',
+        screenshot: 'on',
     },
 
     projects: [

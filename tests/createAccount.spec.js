@@ -17,7 +17,7 @@ test.describe('Create an account POM', () => {
         createAccountModal = await homePage.clickSignUpButton();
     });
 
-    test.only('Create an account with valid data @smoke', async ({ page }) => {
+    test('Create an account with valid data @smoke', async ({ page }) => {
         await createAccountModal.createNewAccount({
             firstName: 'Max',
             lastName: 'Danish',
@@ -64,7 +64,7 @@ test.describe('Create an account POM', () => {
 
         await expect(
             createAccountModal.wrongNumberOfEnteredCharactersErrorMessage
-        ).toHaveText('Name has to be from 2 to 20 characters long');
+        ).toHaveText('Name has to be from 2 to 20 characters long!!!');
         await expect(createAccountModal.nameField).toHaveCSS(
             'border-color',
             'rgb(220, 53, 69)'
