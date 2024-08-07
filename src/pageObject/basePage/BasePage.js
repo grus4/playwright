@@ -6,7 +6,7 @@ export default class BasePage {
         this._page = page;
         this._url = url;
         this._waitPageSelector = waitPageSelector;
-        this._header = new Header(page);
+        this.header = new Header(page);
     }
 
     async navigateToPage() {
