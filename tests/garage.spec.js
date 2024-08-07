@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import { test, expect } from '../src/pageObject/fixtures/myFixtures';
 
 test.describe('Login', () => {
@@ -8,4 +9,5 @@ test.describe('Login', () => {
     test('Login to account', async ({ garagePage }) => {
         await expect(garagePage.myProfileIcon).toBeVisible();
     });
+
 });

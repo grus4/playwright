@@ -75,6 +75,7 @@ const config = defineConfig({
             use: {
                 ...devices['Desktop Chrome'],
                 baseURL: 'https://qauto.forstudy.space',
+                storageState: './state/user1.json',
             },
             dependencies: ['setup:stage'],
         },
