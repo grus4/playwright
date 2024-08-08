@@ -1,7 +1,6 @@
-import { expect } from '@playwright/test';
-import Header from '../components/Header';
 import CreteAccountModal from './homePageComponents/createAccountModal';
 import BasePage from '../basePage/BasePage';
+import LoginModal from './homePageComponents/loginModal';
 
 export default class HomePage extends BasePage {
     constructor(page) {
@@ -12,5 +11,10 @@ export default class HomePage extends BasePage {
     async clickSignUpButton() {
         await this.signUpButton.click();
         return new CreteAccountModal(this._page);
+    }
+
+    async clickLoginButton() {
+        await this.signUpButton.click();
+        return new LoginModal(this._page);
     }
 }

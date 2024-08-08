@@ -23,7 +23,7 @@ const config = defineConfig({
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
-    retries: 1,
+    retries: 0,
     /* Opt out of parallel tests on CI. */
     workers: 3,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -50,10 +50,10 @@ const config = defineConfig({
     },
 
     projects: [
-        // {
-        //   name: "setup:stage",
-        //   testMatch: "tests/setup/**/*.setup.js",
-        // },
+        {
+            name: 'setup:stage',
+            testMatch: 'tests/setup/**/*.setup.js',
+        },
 
         // {
         //   name: "teardown:stage",
@@ -75,7 +75,9 @@ const config = defineConfig({
             use: {
                 ...devices['Desktop Chrome'],
                 baseURL: 'https://qauto.forstudy.space',
+                storageState: './state/user1.json',
             },
+            dependencies: ['setup:stage'],
         },
 
         // {

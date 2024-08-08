@@ -1,6 +1,7 @@
+import LoginModal from '../homePage/homePageComponents/loginModal';
 import BaseComponent from './BaseComponent';
 
-export default class Header extends BaseComponent{
+export default class Header extends BaseComponent {
     constructor(page) {
         super(page);
         this.signInButton = page.locator('button.header_signin');
@@ -9,5 +10,6 @@ export default class Header extends BaseComponent{
 
     async openSignInForm() {
         await this.signInButton.click();
+        return new LoginModal(this._page);
     }
 }
