@@ -7,3 +7,5 @@ export const mockedProfileData = {
         lastName: 'Dared',
     },
 };
+
+

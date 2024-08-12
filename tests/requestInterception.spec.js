@@ -2,12 +2,12 @@ import { test, expect } from '../src/pageObject/fixtures/myFixtures';
 import { mockedProfileData } from '../src/data/profileData.js';
 import { USERS } from '../src/data/users.js';
 
-test.describe('Profile request interception', () => {
+test.describe('Profile request interception @api', () => {
     test.beforeEach(async ({ garagePage }) => {
         await garagePage.navigateToPage();
     });
 
-    test.only('Profile request interception', async ({
+    test('Profile request interception', async ({
         garagePage,
         profilePage,
         page,
