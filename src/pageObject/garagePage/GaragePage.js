@@ -7,10 +7,10 @@ export default class GaragePage extends BasePage {
         this.brandDropDownField = page.getByLabel('Brand');
         this.modelDropDownField = page.getByLabel('Model');
         this.mileageField = page.locator('#addCarMileage');
+        this.editProfileButton = page.locator('.sidebar_btn.-profile');
     }
 
     async openAddCarForm() {
         await this.addCarButton.click();
     }
-
 }

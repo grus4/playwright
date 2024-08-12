@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import { test, expect } from '../src/pageObject/fixtures/myFixtures';
 
 test.describe('Login', () => {
