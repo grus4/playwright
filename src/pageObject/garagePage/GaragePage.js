@@ -13,8 +13,4 @@ export default class GaragePage extends BasePage {
     async openAddCarForm() {
         await this.addCarButton.click();
     }
-
-    async openProfilePage() {
-        await this.editProfileButton.click();
-    }
 }

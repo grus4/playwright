@@ -1,6 +1,5 @@
 import { test, expect } from '../src/pageObject/fixtures/myFixtures';
 import { mockedProfileData } from '../src/data/profileData.js';
-import { USERS } from '../src/data/users.js';
 
 test.describe('Profile request interception @api', () => {
     test.beforeEach(async ({ garagePage }) => {
@@ -8,7 +7,6 @@ test.describe('Profile request interception @api', () => {
     });
 
     test('Profile request interception', async ({
-        garagePage,
         profilePage,
         page,
     }) => {
@@ -18,10 +16,7 @@ test.describe('Profile request interception @api', () => {
                 json: mockedProfileData,
             });
         });
-        await garagePage.openProfilePage();
-        await expect(profilePage.profileName).not.toHaveText(
-            `${USERS.USER1.firstName} ${USERS.USER1.lastName}`
-        );
+        await profilePage.navigateToPage();
         await expect(profilePage.profileName).toHaveText(
             `${mockedProfileData.data.name} ${mockedProfileData.data.lastName}`
         );
