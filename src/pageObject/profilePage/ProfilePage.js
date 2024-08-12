@@ -11,5 +11,7 @@ export default class ProfilePage extends BasePage {
         this.editProfileButton = page.getByRole('button', {
             name: 'Edit profile'
         });
+
+        this.profileName = page.locator('.profile_name');
     }
 }
