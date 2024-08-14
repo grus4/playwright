@@ -31,7 +31,7 @@ test.describe('Add a car', async () => {
 
         const body = await response.json();
 
-        expect(body.data, 'The car was created @api').toMatchObject(
+        expect(body.data, 'The car was created').toMatchObject(
             bodyRequest
         );
         expect(response).toBeOK;
