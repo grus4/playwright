@@ -1,7 +1,13 @@
-const bodyRequest = {
-    carBrandId: 1,
-    carModelId: 1,
-    mileage: 123,
+import { CAR_BRANDS } from "./cars";
+import { CAR_MODELS } from "./carModels";
+
+const carBrand = CAR_BRANDS.Audi;
+const carModel = CAR_MODELS.Audi.A6;
+
+const requestBody = {
+    carBrandId: carBrand.id,
+    carModelId: carModel.id,
+    mileage: Math.floor(Math.random() * 100),
 };
 
 const bodyInvalidRequest = {
@@ -37,7 +43,7 @@ const routeOrEntityNotFoundRequestError = {
 };
 
 export {
-    bodyRequest,
+    requestBody,
     bodyValidResponse,
     badRequestError,
     routeOrEntityNotFoundRequestError,
