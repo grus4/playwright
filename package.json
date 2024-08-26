@@ -4,7 +4,7 @@
     "type": "module",
     "main": "index.js",
     "devDependencies": {
-        "@playwright/test": "^1.47.0-alpha-2024-08-12",
+        "@playwright/test": "^1.46.1",
         "@types/node": "^20.14.11",
         "prettier": "3.3.3"
     },
@@ -16,6 +16,7 @@
         "test:dev": "npx playwright test --project=dev"
     },
     "dependencies": {
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "moment": "^2.30.1"
     }
 }

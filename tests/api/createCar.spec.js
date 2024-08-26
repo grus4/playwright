@@ -2,6 +2,7 @@ import { expect, test } from '../../src/pageObject/fixtures/myFixtures.js';
 import { CAR_BRANDS } from '../../src/data/cars.js';
 import { CAR_MODELS } from '../../src/data/carModels.js';
 import { USERS } from '../../src/data/users.js';
+import moment from 'moment/moment.js';
 
 test.describe('Add a car', () => {
     test.afterEach(async ({ request }) => {
@@ -149,10 +150,10 @@ test.describe('Adding expenses to an existing car', async () => {
 
         const requestBodyExpenses = {
             carId: bodyCar.data.id,
-            reportedAt: "2024-08-18T00:00:00.000Z",
+            reportedAt: moment().format('YYYY-MM-DD'),
             mileage: expenseMileage,
             liters: 11,
-            totalCost: Math.floor(Math.min(Math.random()) * 100, 10000)
+            totalCost: Math.floor(Math.min(Math.random()) * 100, 10000),
         };
 
         const responseExpenses = await request.post('/api/expenses', {
