@@ -3,10 +3,10 @@ import {
     expect as customExpect,
     request as apiRequest,
 } from '@playwright/test';
-import GaragePage from '../garagePage/GaragePage';
+import GaragePage from '../garagePage/GaragePage.js';
 import { USER1_STORAGE_STATE_PATH } from '../../data/constants';
 import HomePage from '../homePage/HomePage';
-import ProfilePage from '../profilePage/profilePage';
+import ProfilePage from '../profilePage/ProfilePage.js';
 
 export const test = customTest.extend({
     page: async ({ browser }, use) => {

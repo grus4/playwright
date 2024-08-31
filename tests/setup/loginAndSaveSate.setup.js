@@ -1,7 +1,5 @@
 import { expect, test as setup } from '@playwright/test';
 import { USER1_STORAGE_STATE_PATH } from '../../src/data/constants.js';
-import HomePage from '../../src/pageObject/homePage/HomePage.js';
-import GaragePage from '../../src/pageObject/garagePage/GaragePage.js';
 import { USERS } from '../../src/data/users.js';
 
 setup(
