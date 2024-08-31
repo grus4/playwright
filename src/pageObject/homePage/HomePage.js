@@ -1,6 +1,6 @@
 import CreteAccountModal from './homePageComponents/createAccountModal';
 import BasePage from '../basePage/BasePage';
-import LoginModal from './homePageComponents/loginModal';
+import LoginModal from './homePageComponents/LoginModal.js';
 
 export default class HomePage extends BasePage {
     constructor(page) {
