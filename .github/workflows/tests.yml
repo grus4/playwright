@@ -21,7 +21,7 @@ jobs:
           run: npm run test
           env:
             ENV: 'dev'
-            BASE_URL: https://qauto.forstudy.space
+            BASE_URL: https://qauto.forstudy.space/
             HTTP_CREDENTIALS_USERNAME: guest 
             HTTP_CREDENTIALS_PASSWORD: welcome2qauto
         -  name: "Upload report to artifacts"
