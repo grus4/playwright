@@ -4,10 +4,10 @@ import {
     request as apiRequest,
     request,
 } from '@playwright/test';
-import GaragePage from '../garagePage/GaragePage';
+import GaragePage from '../garagePage/GaragePage.js';
 import { USER1_STORAGE_STATE_PATH } from '../../data/constants';
 import HomePage from '../homePage/HomePage';
-import ProfilePage from '../profilePage/profilePage';
+import ProfilePage from '../profilePage/ProfilePage.js';
 import CarsControllers from '../../controllers/CarsController';
 import { CAR_BRANDS } from '../../data/cars';
 import { CAR_MODELS } from '../../data/carModels';

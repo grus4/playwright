@@ -1,4 +1,4 @@
-import LoginModal from '../homePage/homePageComponents/loginModal';
+import LoginModal from '../homePage/homePageComponents/LoginModal';
 import BaseComponent from './BaseComponent';
 
 export default class Header extends BaseComponent {
