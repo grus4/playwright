@@ -1,5 +1,6 @@
-import { CAR_BRANDS } from "./cars";
-import { CAR_MODELS } from "./carModels";
+import { CAR_BRANDS } from './cars';
+import { CAR_MODELS } from './carModels';
+import { faker } from '@faker-js/faker';
 
 const carBrand = CAR_BRANDS.Audi;
 const carModel = CAR_MODELS.Audi.A6;
@@ -7,7 +8,7 @@ const carModel = CAR_MODELS.Audi.A6;
 const requestBody = {
     carBrandId: carBrand.id,
     carModelId: carModel.id,
-    mileage: Math.floor(Math.random() * 100),
+    mileage: faker.number.int({ min: 1, max: 100 }),
 };
 
 const bodyInvalidRequest = {
@@ -48,4 +49,6 @@ export {
     badRequestError,
     routeOrEntityNotFoundRequestError,
     bodyInvalidRequest,
+    carBrand,
+    carModel
 };
